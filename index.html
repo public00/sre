@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .post {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .post h2 {
+            margin: 0;
+        }
+        .post p {
+            color: #666;
+        }
+        .post a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Blog</h1>
+    </header>
+    <div class="container">
+        <div id="posts" class="blog-posts">
+            <div class="post">
+                <h2>Post One</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="#">Read more</a>
+            </div>
+            <div class="post">
+                <h2>Post Two</h2>
+                <p>Suspendisse potenti. Ut fermentum massa at justo sodales, a egestas purus.</p>
+                <a href="#">Read more</a>
+            </div>
+            <div class="post">
+                <h2>Post Three</h2>
+                <p>Curabitur ullamcorper orci ac nisl fringilla, eu tincidunt odio vehicula.</p>
+                <a href="#">Read more</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
