@@ -4,72 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blog</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        .blog-posts {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .post {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .post h2 {
-            margin: 0;
-        }
-        .post p {
-            color: #666;
-        }
-        .post a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="bg-dark text-white text-center py-3">
         <h1>My Blog</h1>
     </header>
-    <div class="container">
-        <div id="posts" class="blog-posts">
-            <div class="post">
-                <h2>Post One</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a href="#">Read more</a>
-            </div>
-            <div class="post">
-                <h2>Post Two</h2>
-                <p>Suspendisse potenti. Ut fermentum massa at justo sodales, a egestas purus.</p>
-                <a href="#">Read more</a>
-            </div>
-            <div class="post">
-                <h2>Post Three</h2>
-                <p>Curabitur ullamcorper orci ac nisl fringilla, eu tincidunt odio vehicula.</p>
-                <a href="#">Read more</a>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="list-group">
+                    <a href="/post-one" class="list-group-item list-group-item-action">
+                        <h4 class="mb-1">Post One</h4>
+                        <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </a>
+                    <a href="/post-two" class="list-group-item list-group-item-action">
+                        <h4 class="mb-1">Post Two</h4>
+                        <p class="mb-1">Suspendisse potenti. Ut fermentum massa at justo sodales, a egestas purus.</p>
+                    </a>
+                    <a href="/post-three" class="list-group-item list-group-item-action">
+                        <h4 class="mb-1">Post Three</h4>
+                        <p class="mb-1">Curabitur ullamcorper orci ac nisl fringilla, eu tincidunt odio vehicula.</p>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const pageMap = {
+                "/intro-to-sre-1": "Intro-to-sre.html",
+                "/post-two": "sre-page-2.html",
+                "/post-three": "sre-page-3.html"
+            };
+            
+            document.querySelectorAll(".list-group-item-action").forEach(link => {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const targetPage = pageMap[this.getAttribute("href")];
+                    if (targetPage) {
+                        window.location.href = targetPage;
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
