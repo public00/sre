@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="list-group">
-                    <a href="/intro-to-sre-1" class="list-group-item list-group-item-action">
+                    <a href="/intro" class="list-group-item list-group-item-action">
                         <h4 class="mb-1">intro to sre</h4>
                         <p class="mb-1">30.March</p>
                     </a>
@@ -33,9 +33,11 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const pageMap = {
-                "/intro-to-sre-1": "Intro-to-sre.html",
-                "/resources": "resources.html",
-                "/post-three": "sre-page-3.html"
+                "/intro": "Intro-to-sre.html",
+                "/error-budget": "error-budget.html",
+                "/monitoring": "monitoring-observability.html",
+                "/postmortem": "postmortem.html",
+                "/slo": "slo-sli.html"
             };
             
             document.querySelectorAll(".list-group-item-action").forEach(link => {

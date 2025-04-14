@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Failure and Accountability in SRE</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Failure and Accountability in SRE</h1>
+  <p>Failures are inevitable in complex systems. Instead of assigning blame to individuals, a <strong>blameless post-mortem</strong> approach should be embraced. This promotes learning and continuous improvement.</p>
+  <p>Engineers involved in incidents should feel safe to share experiences without fear. They should provide detailed reviews of:</p>
+  <ul>
+    <li>The actions they took</li>
+    <li>The effects they observed</li>
+    <li>Their expectations and assumptions</li>
+    <li>Their understanding of the timeline of events</li>
+  </ul>
+  <p>This openness fosters a culture of accountability without blame, encouraging everyone to contribute to improvements.</p>
+
+  <h2>The Goal: Building Resilient Systems</h2>
+  <p>The focus should be on making systems resilient to failures, not just preventing them. Engineers should explain their reasoning and context behind decisions made during incidents. This helps teams learn rather than become overly cautious.</p>
+
+  <h2>Root Cause Analysis and the Five Whys</h2>
+  <p><strong>Root Cause Analysis</strong> is essential in incident resolution. The <strong>Five Whys</strong> technique can be useful, but has pitfalls:</p>
+  <ul>
+    <li>May lead to individual blame (e.g., "The engineer didn’t know how to use the system").</li>
+    <li>Instead of "why", asking <strong>"how"</strong> can yield richer insights into operational failures.</li>
+  </ul>
+  <p>The goal is not just to find a root cause, but to construct a nuanced understanding through careful questioning and analysis.</p>
+
+  <h2>Postmortems: Documenting and Learning from Incidents</h2>
+  <p>A <strong>postmortem</strong> is a written record of an incident that captures its impact, actions taken, and lessons learned. While incident management resolves ongoing issues, postmortems focus on learning from them.</p>
+  <p>Postmortems should be conducted for significant incidents, particularly those affecting customers. A good postmortem includes:</p>
+  <ul>
+    <li><strong>Timeline:</strong> Key incident status changes, customer impact, major responder actions, and relevant logs or metrics.</li>
+    <li><strong>Analysis:</strong> Incident cause, number of customers affected, and overall impact.</li>
+    <li><strong>Action Items:</strong> Identified actions and responsibilities for resolution.</li>
+    <li><strong>External Messaging:</strong> Draft messaging for customers about the incident and its resolution.</li>
+  </ul>
+  <p>After completion, postmortems should be shared with all relevant parties before the review meeting, which covers:</p>
+  <ul>
+    <li>Timeline alignment</li>
+    <li>Early detection discussion</li>
+    <li>Customer impact review</li>
+    <li>Action item assignments</li>
+  </ul>
+
+  <h2>Benefits of Postmortems</h2>
+  <ul>
+    <li><strong>Incident comparison:</strong> Searchable records help resolve similar future issues more quickly.</li>
+    <li><strong>Transparency:</strong> Provides the entire business with incident insights.</li>
+    <li><strong>Reinvestment case:</strong> Highlights technical debt and supports improvement efforts.</li>
+    <li><strong>Retention:</strong> Ensures lessons from past incidents are not forgotten.</li>
+  </ul>
+
+  <h2>Best Practices for Postmortems</h2>
+  <ul>
+    <li><strong>Ownership:</strong> Engineers involved in the incident should write the postmortem.</li>
+    <li><strong>Real-time documentation:</strong> Capture actions and decisions during the incident for more accurate records.</li>
+  </ul>
+
+  <h2>Postmortems as a Feedback Loop for Improvement</h2>
+  <p>For organizations adopting SRE practices, cultivating a strong postmortem culture creates a positive feedback loop. It enables teams to reflect, learn, and evolve—ultimately boosting system reliability and incident preparedness.</p>
+
+</body>
+</html>

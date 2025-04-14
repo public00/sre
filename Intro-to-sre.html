@@ -1,3 +1,94 @@
-git config --global user.name "public00"
-git config --global user.email lunicvedran@gmail.com
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Intro to reliability engineering</title>
+</head>
+<body>
 
+  <h1>Customer Experience and Its Importance in Tech</h1>
+  <p>Customer experience (CX) is at the heart of any technology-driven business. As technology evolves, customers’ expectations of digital products have also increased. Today, users expect applications to be fast, reliable, and available at all times. A poor customer experience—such as slow loading times, downtime, or errors—can significantly impact user retention, damage brand reputation, and lead to financial losses. For tech companies, ensuring high uptime and optimal performance is not just about meeting customer expectations; it's about fostering trust and loyalty.</p>
+
+  <p>Web applications are particularly vulnerable to disruptions. Any degradation in performance, whether it’s slow response times, system outages, or glitches, can lead to significant consequences. Therefore, the reliability and availability of an application are not only crucial for user satisfaction but also for maintaining competitive advantage in a saturated market.</p>
+
+  <p>The role of reliability in customer experience is often overlooked, but it plays a major part in shaping perceptions of a brand. A reliable application enables businesses to serve customers effectively, respond to market demands, and deliver on promises consistently.</p>
+
+  <h2>DevOps and the Need for SRE</h2>
+  <p>DevOps introduced the practice of bridging the gap between development and operations teams. The goal was to improve collaboration, reduce development cycles, and create a culture of continuous delivery. However, as organizations grew and workflows became more complex, traditional DevOps practices struggled to keep up with the demands of scaling systems, particularly with the growing need for performance, scalability, and system reliability.</p>
+
+  <p>This is where Site Reliability Engineering (SRE) came into the picture. SRE evolved to specifically focus on operationalizing reliability at scale by automating processes, implementing rigorous monitoring, and optimizing infrastructure. While DevOps emphasizes cultural and process improvements between development and operations teams, SRE brings an engineering mindset to system reliability—focusing not just on managing incidents but also on preventing them and continuously improving system performance.</p>
+
+  <p>SREs aim to provide scalable and reliable software systems by embedding engineering principles in operations. They utilize advanced automation, monitoring systems, and design patterns to keep services available and performing at their best.</p>
+
+  <h2>Key Responsibilities of a Reliability Engineer (SRE)</h2>
+  <ul>
+    <li><strong>Availability:</strong> Ensure systems and applications are always operational, minimizing downtime.</li>
+    <li><strong>Latency:</strong> Optimize system performance to reduce response times.</li>
+    <li><strong>Performance:</strong> Enhance how applications perform under different conditions and loads.</li>
+    <li><strong>Change Management:</strong> Manage production changes to avoid disruptions.</li>
+    <li><strong>Monitoring & Alerting:</strong> Identify and act on issues proactively through monitoring systems.</li>
+    <li><strong>Emergency & Incident Response:</strong> Respond to and resolve outages efficiently while analyzing root causes.</li>
+    <li><strong>Capacity Planning:</strong> Prepare systems for future growth and spikes in demand.</li>
+  </ul>
+
+  <h2>Key Principles of SRE</h2>
+  <ul>
+    <li><strong>Reliability:</strong> Maintain consistent uptime and availability through SLOs.</li>
+    <li><strong>Automation:</strong> Reduce manual tasks and errors through automation.</li>
+    <li><strong>SLOs & Error Budgets:</strong> Balance feature development with acceptable levels of reliability.</li>
+    <li><strong>Incident Management:</strong> Learn from incidents via postmortems to prevent recurrence.</li>
+    <li><strong>Monitoring & Observability:</strong> Use metrics, logs, and traces to diagnose and prevent issues.</li>
+    <li><strong>Collaboration:</strong> Align Dev and Ops on shared reliability goals.</li>
+  </ul>
+
+  <h2>Proactive Approach in SRE</h2>
+  <p>SRE takes a proactive approach compared to traditional operations, which often focus on responding to incidents after they occur. Instead, SREs anticipate potential failures and work to eliminate them before they affect users. By leveraging advanced observability tools like metrics, logs, and distributed tracing, SREs can gain deeper insights into the system’s health. They also automate failure detection and remediation processes to reduce downtime and improve system resilience.</p>
+
+  <h2>Building Confidence in Core Platforms</h2>
+  <p>Building trust in your platform’s reliability is a process that requires the right tools, practices, and cultural mindset. It is inevitable that things will break in complex systems, but the key to maintaining user trust is being able to detect and mitigate issues before they cause significant harm. The foundation of reliable systems is built through continuous improvement cycles, robust monitoring, and failover mechanisms. SREs also promote predictable infrastructure, ensuring that systems behave as expected under various conditions.</p>
+
+  <p>Reliability requires ongoing effort and iteration—relying on trial and error, improving maintainability, automating processes, and testing the limits of the system under stress.</p>
+
+  <h2>The Importance of Automation</h2>
+  <p>Automation is a critical enabler for reliability. Without automation, manual intervention becomes increasingly costly and error-prone as systems grow. SREs use infrastructure-as-code (IaC) practices to automate system provisioning, configuration management, and monitoring. Automated deployment pipelines ensure that changes are tested and deployed with minimal human intervention, leading to more consistent and predictable results.</p>
+
+  <p>Automation is especially important for change management, where manual processes can introduce risk and slow down response times. By automating tasks, SREs reduce the potential for mistakes and increase the speed at which issues are addressed.</p>
+
+  <h2>Reliability Strategic Goals</h2>
+  <ul>
+    <li><strong>Make Deployment Easier:</strong> Faster and less error-prone feature delivery.</li>
+    <li><strong>Improve Uptime:</strong> Ensure services are available when users need them.</li>
+    <li><strong>Establish Visibility:</strong> Detect and solve issues proactively via monitoring.</li>
+    <li><strong>Set SLOs & Error Budgets:</strong> Align reliability targets across teams.</li>
+  </ul>
+
+  <h2>Reliability Engineering Focuses on Users and Business Value</h2>
+  <p>Ultimately, reliability engineering is about delivering value to users while ensuring that technology doesn't become an obstacle to business goals. Reliability engineers aren’t just solving technical problems—they’re focused on providing better user experiences and supporting business objectives through consistent service availability and performance.</p>
+
+  <h2>Reducing Toil</h2>
+  <p>Toil refers to the manual, repetitive work that doesn’t contribute to the business or enhance the system. SREs aim to reduce toil by automating tasks and enabling systems to run autonomously. This leads to a more efficient and productive engineering team and allows them to focus on high-value activities, such as innovation and system improvement.</p>
+
+  <h2>Understanding Error Budgets</h2>
+  <p>An error budget helps balance reliability with the need for continuous feature development. It defines the tolerance for failure, and if the error budget is burned through (i.e., the system exceeds acceptable failure thresholds), teams must take corrective action before moving forward with new changes.</p>
+
+  <h2>Risk Analysis</h2>
+  <p>When assessing system reliability, risk analysis should include critical metrics such as Time to Detect (TTD), Time to Resolve (TTR), and the frequency of errors. This analysis allows SREs to understand the potential impact of failures and prioritize improvements.</p>
+
+  <h2>Monitoring and Alerting</h2>
+  <p>Effective monitoring and alerting enable teams to stay ahead of system issues. Monitoring provides real-time insights into system performance, while alerting triggers events that notify the team of potential failures or abnormal behavior, allowing them to respond quickly and mitigate user impact.</p>
+
+  <h2>Facilitating Postmortems</h2>
+  <p>Postmortems help teams learn from past incidents. By analyzing the root cause of failures and implementing short- and long-term fixes, SREs can improve the system’s reliability over time. They also ensure that future incidents can be handled more effectively, reducing the likelihood of recurrence.</p>
+
+  <h2>How to Build Reliable Systems: Phases</h2>
+  <ol>
+    <li><strong>Phase 1: Foundation</strong> – Establish automated pipelines and load scaling mechanisms.</li>
+    <li><strong>Phase 2: Monitoring and Practices</strong> – Set up monitoring, SLOs, on-call rotations, and postmortems.</li>
+    <li><strong>Phase 3: Advanced Reliability</strong> – Use canary deployments, chaos engineering, and performance monitoring.</li>
+  </ol>
+
+  <h2>Conclusion</h2>
+  <p>Building reliable systems is not just about technology; it's about building trust, improving user experience, and driving business success. By following SRE principles, focusing on automation, reducing toil, and continuously improving processes, companies can ensure their systems remain resilient, scalable, and performant.</p>
+
+</body>
+</html>

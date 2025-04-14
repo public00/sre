@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Error Budget Overview</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Error Budget Overview</h1>
+  <p>An <strong>Error Budget</strong> is a measure of how much unavailability or unreliability a service is allowed within a given period. For example, if a system is permitted to have 0.01% unavailability, that constitutes the error budget. This budget can be spent in different ways:</p>
+  <ul>
+    <li><strong>Risk-taking:</strong> Engineering teams might launch new features or make changes quickly, using up the error budget.</li>
+    <li><strong>Stabilization:</strong> Teams focus on improving reliability, building up the error budget by stabilizing the system.</li>
+  </ul>
+  <p>If the error budget is exhausted, all new launches must be frozen until the service stabilizes and the error budget is replenished.</p>
+
+  <h2>Error Response Codes and Standardization</h2>
+  <p>It’s crucial to standardize error handling across services:</p>
+  <ul>
+    <li><strong>2xx Responses:</strong> Should not indicate an error in the body.</li>
+    <li><strong>4xx Errors:</strong> For client-side issues like bad requests.</li>
+    <li><strong>5xx Errors:</strong> For server-side issues like Out of Memory (OOM).</li>
+  </ul>
+  <p>Track both 4xx and 5xx errors, but focus on 5xx errors for SLOs as they better reflect system reliability.</p>
+
+  <h2>Canarying for Safe Deployments</h2>
+  <p><strong>Canarying</strong> is a deployment strategy where a new version of a service is deployed alongside the old one. It allows validation before full rollout.</p>
+  <p><strong>Tight Error Budget:</strong> Use slow rollouts with small user fractions to contain failures, even if it slows deployment speed.</p>
+
+  <h2>Forming and Managing the Error Budget</h2>
+  <ul>
+    <li>Product Management defines the SLO, setting uptime expectations over a quarter.</li>
+    <li>A monitoring system tracks actual uptime.</li>
+    <li>The difference between SLO and actual uptime is the available error budget.</li>
+  </ul>
+  <p>
+    <strong>Releases can proceed</strong> if the error budget is available.<br>
+    <strong>New releases are frozen</strong> if the error budget is exhausted.
+  </p>
+
+  <h3>SLI and SLO Setup</h3>
+  <ul>
+    <li>Measure a relevant metric (e.g., latency).</li>
+    <li>Set the SLO based on acceptable thresholds.</li>
+  </ul>
+  <p>Example: If normal response is under 100ms but sometimes reaches 200ms, set the SLO at 200ms.</p>
+
+  <h2>Benefits of Using an Error Budget</h2>
+  <p>Error budgets foster collaboration between product teams and SREs:</p>
+  <ul>
+    <li>Product teams are incentivized to innovate.</li>
+    <li>SREs ensure the system remains stable.</li>
+  </ul>
+  <p>If the error budget is exceeded, non-critical releases should be frozen until stability is restored.</p>
+
+  <h2>Error Budget Alerts and Monitoring</h2>
+  <p>Alerting on error budget consumption helps monitor budget usage:</p>
+  <ul>
+    <li><strong>Warning Alert:</strong> Triggered when more than 75% of the budget is used in 30 days.</li>
+    <li><strong>Critical Alert:</strong> Triggered when over 90% is used. Notifies the on-call team.</li>
+  </ul>
+
+  <h3>Burn Rate Calculation</h3>
+  <ul>
+    <li><strong>Budget Window:</strong> Typically 30 days.</li>
+    <li><strong>Alert Window:</strong> Duration used to trigger alerts (e.g., 1 hour).</li>
+    <li><strong>Budget Consumption:</strong> % of budget used within the alert window.</li>
+  </ul>
+
+  <p>The formula for burn rate is:</p>
+  <pre>
+Burn Rate = (Budget Consumption / 100) × (Budget Window / Alert Window)
+  </pre>
+
+</body>
+</html>

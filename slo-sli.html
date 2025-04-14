@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SLOs</title>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Introduction to SLOs and Their Importance</h1>
+      <p>Service Level Objectives (SLOs) are at the core of Site Reliability Engineering (SRE) work. They define measurable goals for the system's reliability, guiding the decisions SRE teams make on what to prioritize and focus on. SLOs provide a clear framework for engineers to decide what engineering work to prioritize, ensuring alignment with business needs and user expectations.</p>
+      <p>The first step in formulating effective SLOs is to discuss what they should measure and how they align with both user needs and system performance. Once defined, SLOs can be maintained in both the short and long term. SLOs are not static and should evolve as the system grows and new challenges arise.</p>
+    </section>
+
+    <section>
+      <h2>Defining and Using Service Level Indicators (SLIs)</h2>
+      <p>A Service Level Indicator (SLI) is a key metric used to measure the level of service provided by a system. An SLI is typically a ratio of good events (successful operations) divided by the total number of events. For example, the ratio of successful HTTP requests to total HTTP requests is an SLI for availability.</p>
+      <p>SLIs give a quantitative measure of how well a service is performing against its SLOs. Understanding these indicators helps SREs understand whether they are meeting the reliability targets and what areas need improvement.</p>
+    </section>
+
+    <section>
+      <h2>Choosing the Appropriate Time Window for SLOs</h2>
+      <p>When setting SLOs, it's crucial to determine the appropriate time window for tracking the metrics. The choice between a rolling window or a calendar-aligned window depends on the context and the nature of the service.</p>
+      <ul>
+        <li><strong>Rolling Windows:</strong> More aligned with user experience, helping smooth out short-term anomalies.</li>
+        <li><strong>Calendar-Aligned Windows:</strong> Useful for business planning and evaluating seasonal traffic changes.</li>
+        <li><strong>Shorter Time Windows:</strong> Useful for quick decisions and immediate corrective actions.</li>
+        <li><strong>Longer Time Windows:</strong> Suitable for strategic decisions and meaningful analysis over time.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Getting Stakeholder Agreement on SLOs</h2>
+      <p>For SLOs to be effective, they need buy-in from all relevant stakeholders:</p>
+      <ul>
+        <li><strong>Product Managers:</strong> Must agree the SLOs meet user needs.</li>
+        <li><strong>Developers:</strong> Must commit to prioritizing reliability when the error budget is exhausted.</li>
+        <li><strong>SREs:</strong> Must set up alerting systems to proactively notify of potential SLO breaches.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Establishing an Error Budget Policy</h2>
+      <p>An Error Budget defines the acceptable margin of error. When the error budget is exhausted, actions may include:</p>
+      <ul>
+        <li>Prioritizing reliability fixes over new features.</li>
+        <li>Freezing production changes until stability is restored.</li>
+        <li>Focusing on reliability-related bugs.</li>
+      </ul>
+      <p>The Error Budget Policy should be documented and include:</p>
+      <ul>
+        <li>Authors, reviewers, and approvers.</li>
+        <li>Clear service descriptions and associated actions.</li>
+        <li>Escalation procedures for disagreements.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Defining and Documenting SLOs</h2>
+      <p>Defined SLOs should be centrally documented and reviewed. Documentation should include:</p>
+      <ul>
+        <li><strong>Basic Info:</strong> Author, reviewers, dates.</li>
+        <li><strong>SLO Description:</strong> Objective and SLI metrics.</li>
+        <li><strong>Error Budget:</strong> How it’s calculated and consumed.</li>
+        <li><strong>Rationale:</strong> Reasoning behind SLO values.</li>
+      </ul>
+      <p>Initial reviews should be monthly, becoming less frequent as SLOs stabilize.</p>
+    </section>
+
+    <section>
+      <h2>Continuous Improvement of SLO Targets</h2>
+      <p>SLOs and SLIs should be refined over time. If SLOs are not prompting action when issues arise, they may be too loose. Adjust error budget action plans as the system evolves.</p>
+      <p>For example, repeated error budget violations might warrant a halt in feature rollouts to focus on system reliability.</p>
+    </section>
+
+    <section>
+      <h2>How to Calculate SLOs from Monitoring Data</h2>
+      <p>Monitoring data is essential for accurate SLO calculation. To do this:</p>
+      <ul>
+        <li>Start with broad SLOs, then refine.</li>
+        <li>Use consistent naming conventions for metrics.</li>
+        <li>Choose relevant traffic volume metrics: average, peak, or total over time.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Categorizing SLOs</h2>
+      <p>SLOs can be categorized by focus area:</p>
+      <ul>
+        <li><strong>Volume:</strong> How much traffic/service load.</li>
+        <li><strong>Availability:</strong> Service uptime and accessibility.</li>
+        <li><strong>Latency:</strong> Response speed to requests.</li>
+        <li><strong>Errors:</strong> Frequency of failures or error responses.</li>
+        <li><strong>Tickets:</strong> Need for manual intervention.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Communicating with Senior Leadership</h2>
+      <p>Keep leadership informed with clear reports that include:</p>
+      <ul>
+        <li>SLO performance data.</li>
+        <li>Business impact of reliability issues.</li>
+        <li>Corrective actions being taken.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Conclusion</h2>
+      <p>In SRE, the goal is not to prevent every failure but to make failures manageable. SLOs and error budgets help align engineering with user and business needs, fostering resilience and continuous improvement.</p>
+      <p>The key is not avoiding all failure, but controlling how often it happens and how well systems recover from it.</p>
+    </section>
+  </main>
+</body>
+</html>

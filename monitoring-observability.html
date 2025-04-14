@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitoring and Observability</title>
+</head>
+<body>
+  <h1>Monitoring and Observability</h1>
+
+  <section>
+    <h2>Traditional vs Modern Monitoring</h2>
+    <p>
+      In the traditional approach to monitoring, a system watches for changes or issues and sends an email when something goes wrong.
+      However, in modern software environments, relying on emails that require human intervention is a mistake.
+      Instead, systems should trigger notifications only when direct action is needed, allowing teams to focus on essential tasks and reduce noise.
+    </p>
+  </section>
+
+  <section>
+    <h2>Types of Monitoring Outputs</h2>
+    <ul>
+      <li>
+        <strong>Alerts:</strong> Urgent notifications requiring immediate human action.
+      </li>
+      <li>
+        <strong>Tickets:</strong> Issues that require action but not immediately.
+      </li>
+      <li>
+        <strong>Logs:</strong> Non-actionable entries useful for analysis and debugging.
+      </li>
+    </ul>
+    <p>
+      A key principle: there should never be an alert without a required action. If no immediate action is needed, the alert configuration must be fixed.
+    </p>
+  </section>
+
+  <section>
+    <h2>Monitoring vs Observability</h2>
+    <p>
+      Monitoring tells you <em>when</em> a system is malfunctioning. Observability answers the question: <em>Why</em> is it failing?
+    </p>
+    <p>
+      Monitoring (white-box) provides internal insights through time series data, logs, and traces. Its goal is to answer:
+    </p>
+    <ul>
+      <li>What is broken?</li>
+      <li>Why is it broken?</li>
+    </ul>
+    <p>
+      Monitoring helps approximate system health but doesn’t prevent failures. Integrating it with observability enables faster diagnosis and resolution.
+    </p>
+  </section>
+
+  <section>
+    <h2>Change Management in Monitoring</h2>
+    <ul>
+      <li>
+        <strong>Observability-driven development:</strong> Instrument code with observability in mind during development.
+      </li>
+      <li>
+        <strong>Single merge per deployment:</strong> Simplifies troubleshooting by isolating changes.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Calculating Percentiles and Data Representation</h2>
+    <p>
+      Percentiles provide insight into system performance but are tricky to calculate accurately due to shifting populations.
+      Traditional time series databases may not retain the original data set.
+    </p>
+    <p>Alternative methods to approximate percentiles include:</p>
+    <ul>
+      <li><strong>Histograms:</strong> Partition data into bins and count occurrences.</li>
+      <li><strong>Streaming data structures:</strong> Offer real-time approximations.</li>
+      <li><strong>Sampling:</strong> Use a subset of data to estimate percentiles.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Uptime and Availability</h2>
+    <p>
+      Uptime metrics include all requests, their status codes, and duration.
+      Definitions of "success" (e.g., does a 404 count as failure?) depend on SLA definitions.
+    </p>
+    <p>Availability includes:</p>
+    <ul>
+      <li><strong>MTBF (Mean Time Between Failures):</strong> Frequency of system failures.</li>
+      <li><strong>MTTR (Mean Time to Repair):</strong> Time taken to fix issues.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Latency</h2>
+    <p>
+      Latency measures how long a system takes to respond. Identifying issues requires metrics and traces but root causes may be deeper.
+      Causes include poor scheduling, network issues, VM overhead, or programming inefficiencies.
+    </p>
+  </section>
+
+  <section>
+    <h2>OpenTelemetry and Data Collection</h2>
+    <p>
+      Tools like OpenTelemetry make it easy to generate data. The challenge is turning raw data into insights.
+    </p>
+    <ul>
+      <li><strong>Semantic conventions:</strong> Ensure data consistency.</li>
+      <li><strong>OpenTelemetry Collector:</strong> Simplifies complex deployments.</li>
+      <li><strong>eBPF-based agents:</strong> Improve observability at the kernel level.</li>
+    </ul>
+    <p>
+      Observability isn’t about debugging code directly; it’s about knowing where to investigate in the system.
+    </p>
+  </section>
+
+  <section>
+    <h2>Dashboards and Reporting</h2>
+    <p>
+      Dashboards offer real-time visibility into service health, SLO compliance, and SLI trends.
+      They can highlight error budget usage or performance patterns needing attention.
+    </p>
+    <p>Data types in reporting include:</p>
+    <ul>
+      <li><strong>Metrics:</strong> High-level system health indicators.</li>
+      <li><strong>Structured event logs:</strong> Detailed system activity.</li>
+      <li><strong>Distributed tracing:</strong> Helps understand system flow and delays.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Monitoring at Scale</h2>
+    <p>
+      Scaling systems require evolving monitoring strategies. Use consistent configurations and global alerting rules instead of per-service thresholds.
+      This ensures simplicity and consistency.
+    </p>
+  </section>
+
+  <section>
+    <h2>Conclusion</h2>
+    <p>
+      Reliable systems require refined monitoring and observability practices.
+      Monitoring answers what’s broken; observability reveals why.
+    </p>
+    <p>
+      By using effective alerts, automating responses, and defining clear SLIs, organizations can improve reliability and reduce downtime.
+      Observability fosters a proactive culture of reliability and continuous improvement.
+    </p>
+  </section>
+</body>
+</html>
