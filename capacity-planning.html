@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Capacity Planning in the Cloud Era</title>
+</head>
+<body>
+
+  <h1>Capacity planning and costs</h1>
+
+  <p>
+    Capacity planning is the practice of anticipating and allocating the resources your system will need over time to meet demand.
+    The goal is to match your capacity as closely as possible to your actual needs. If you underestimate, you risk outages and degraded service.
+    If you overestimate, you waste money by paying for resources you don’t use.
+  </p>
+
+  <p>
+    In traditional infrastructure, capacity planning was tightly tied to physical hardware. You had to order servers, wait for delivery,
+    set them up, and hope your forecasts were close enough to avoid costly mistakes. Today, with the rise of cloud computing,
+    we’ve gained a much more flexible environment, but the core challenges of capacity planning remain—only now they come in different forms.
+  </p>
+
+  <h2>A Higher Level of Abstraction</h2>
+
+  <p>
+    Modern applications demand a shift in mindset. Instead of focusing on low-level infrastructure like individual servers, CPUs, or disks,
+    we raise the level of abstraction. We start thinking in terms of service-level objectives (SLOs), dependencies between services,
+    and how we can express intent.
+  </p>
+
+  <p>
+    So rather than requesting “10 servers in regions A, B, and C,” we now define requirements more like:
+    <strong>“Run service X with 99.9% availability and latency below 200ms.”</strong>
+  </p>
+
+  <p>
+    This change allows for greater flexibility. It lets the underlying platform decide how many resources are needed at any given time
+    to meet that specification, which naturally leads to more adaptive and cost-effective systems.
+  </p>
+
+  <h2>The Tools of the Cloud</h2>
+
+  <ul>
+    <li><strong>Elastic provisioning</strong> – Scale on demand within minutes.</li>
+    <li><strong>Spot instances</strong> – Low-cost, best-effort compute for non-critical workloads.</li>
+    <li><strong>Reserved instances</strong> – Cost-efficient for steady, predictable workloads.</li>
+    <li><strong>Serverless functions</strong> – Run code on demand and only pay for usage.</li>
+    <li><strong>Bottomless storage</strong> – Cloud providers handle scaling, replication, and backups.</li>
+  </ul>
+
+  <p>
+    Despite this flexibility, capacity planning still matters. Even with autoscaling and abstraction,
+    you still need to understand how and why your system consumes resources, and how that usage might grow over time.
+  </p>
+
+  <h2>Why Bother with Capacity Planning in the Cloud?</h2>
+
+  <p>
+    Just because you can provision resources instantly doesn't mean you should do it blindly.
+    Cloud systems are still bound by budgets, performance limitations, architectural decisions, and risks.
+  </p>
+
+  <p>
+    Capacity is not just about CPU or RAM. Depending on your architecture, it might be virtual machines,
+    containers, database connections, watts of power, or even the number of messages in a queue.
+    As your architecture becomes more distributed or complex, you may encounter bottlenecks in storage,
+    network throughput, or inter-service latency.
+  </p>
+
+  <h2>Getting Started with Capacity Planning</h2>
+
+  <ol>
+    <li>Understand your current system and its resource usage.</li>
+    <li>Identify why those resources are used and what might change that usage.</li>
+    <li>Use historical data to identify growth patterns and extrapolate them.</li>
+  </ol>
+
+  <p>
+    Growth can be organic (from user adoption) or inorganic (from events like marketing or new feature rollouts).
+    You can use tools like <code>clock_gettime</code> for CPU metrics, <code>dstat</code> or <code>iftop</code> for network usage,
+    and run load tests on databases to understand performance limits.
+  </p>
+
+  <h2>Assumptions and Risks</h2>
+
+  <p>
+    Capacity planning involves assumptions—about load patterns, caching behavior, and distribution across nodes.
+    Getting these wrong can impact reliability and cost.
+  </p>
+
+  <p>
+    Risk cannot be eliminated completely. The goal is to manage it efficiently:
+    <em>How much reliability do we gain if we add another server?</em>
+  </p>
+
+  <p>
+    Prepare for “success disasters”—unexpected popularity spikes—by setting up alerting and autoscaling policies.
+    Identify both product-specific risks (e.g., underprovisioned services) and organizational risks
+    (e.g., one service failure cascading to others).
+  </p>
+
+  <h2>Expecting the Unexpected</h2>
+
+  <p>
+    Expect traffic surges during events like product launches or seasonal sales. Every team should be able to measure
+    and improve their service’s resilience and performance. Load testing helps identify breaking points before real users do.
+  </p>
+
+  <p>
+    Regular performance checks (e.g., running tests twice a week) can keep reliability top of mind and
+    build engineering confidence.
+  </p>
+
+  <h2>Aligning with Engineering and Product</h2>
+
+  <p>
+    Successful capacity planning requires alignment with engineering and product teams.
+    Provide realistic growth estimates, highlight resource-heavy features, and understand how responsiveness impacts user perception.
+  </p>
+
+  <p>
+    Striking the right balance between speed and satisfaction is critical—250ms might be excessive,
+    while 1.5 seconds could be too slow. Identify and target the sweet spot.
+  </p>
+
+  <h2>Planning Steps</h2>
+
+  <ol>
+    <li>Generate planning numbers – Define the targets that will drive the process.</li>
+    <li>Estimate resources – Convert growth into resource requirements.</li>
+    <li>Request resources – Ask for budget and infrastructure.</li>
+    <li>Approve resources – Finalize budget and provisioning plans.</li>
+    <li>Provision resources – Set up systems and services.</li>
+    <li>Ready to serve – Begin delivering to users.</li>
+  </ol>
+
+  <h2>Keeping Reliability in Focus</h2>
+
+  <p>
+    Capacity planning is about delivering the best value to users at the lowest cost.
+    More reliability (more “nines”) can be bought, but it comes at a cost.
+    Aim for the optimal point where investment brings meaningful improvements without diminishing returns.
+  </p>
+
+  <h2>Capacity Planning in Kubernetes</h2>
+
+  <p>
+    In Kubernetes, capacity planning means ensuring your cluster grows with demand while remaining reliable and performant.
+  </p>
+
+  <ul>
+    <li>
+      <strong>Intent-based specifications</strong> – Define goals like “95% of requests under 200ms.”
+      Autoscalers can respond to custom metrics like latency or queue depth.
+    </li>
+    <li>
+      <strong>External queues</strong> – Scale based on queue length or item age, even for systems outside Kubernetes.
+    </li>
+    <li>
+      <strong>Node selectors and affinity rules</strong> – Control pod placement using labels or more expressive affinity/anti-affinity rules.
+    </li>
+    <li>
+      <strong>Requests and limits</strong> – Define how much CPU/memory a pod needs. Requests determine scheduling;
+      limits prevent overuse and trigger restarts if exceeded.
+    </li>
+    <li>
+      <strong>Namespace quotas</strong> – Partition a cluster and control resource usage at a team or service level.
+    </li>
+  </ul>
+
+  <h2>Other Key Considerations</h2>
+
+  <ul>
+    <li>Facility concerns: power, space, network, cooling</li>
+    <li>Supply chain and hardware lifecycle management</li>
+    <li>Effective tooling and observability</li>
+    <li>Handling unexpected demand bursts</li>
+    <li>Balancing innovation with over-provisioning</li>
+    <li>Planning for business continuity and disaster recovery</li>
+  </ul>
+
+  <p>
+    Capacity planning isn’t just about predicting the future. It’s about understanding your system, your users,
+    and your goals—and using that understanding to build systems that are reliable, efficient, and ready for what’s next.
+  </p>
+
+</body>
+</html>
