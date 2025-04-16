@@ -1,0 +1,71 @@
+<p>By the observability standards in distributed systems, you have two options to track requests across services. Here, we will focus on a scenario with one producer that sends messages to multiple consumers.</p>
+
+<h2 class="mt-5">1. Trace ID</h2>
+<p><strong>Trace ID</strong> is a unique identifier that ties together all the spans (processing steps) in the system related to the same request or transaction. The Trace ID is propagated through the system, and each service adds its own span to the trace.</p>
+
+<h3 class="mt-4">Trace ID Propagation (E2E Trace ID)</h3>
+<p>When a producer sends a request to multiple consumers, the Trace ID is carried along with the request to each consumer. Each consumer will create its own span while maintaining the same Trace ID. This results in one trace with multiple child spans for each consumer.</p>
+
+<h4>Benefits:</h4>
+<ul>
+  <li>Provides a simple view with the full flow of the request through many services.</li>
+  <li>Failures can be tracked back to the exact point in the flow, regardless of whether it occurred on the consumer or producer side.</li>
+  <li>You can see the performance report in each part of the transaction.</li>
+</ul>
+
+<h4>Challenges:</h4>
+<ul>
+  <li>Can introduce complexity when the flow involves a large number of asynchronous operations.</li>
+  <li>Each span can get quite detailed, making visualization difficult.</li>
+</ul>
+
+<h2 class="mt-5">2. Span Links</h2>
+<p><strong>Span links</strong> are used to explicitly link together spans that belong to different traces. Span links allow you to show the relationship between different operations.</p>
+
+<p>We use this pattern when an operation in one trace triggers operations in other traces.</p>
+
+<p>When we have multiple consumers, in a fan-out scenario the producer sends a request to many consumers. Each consumer might not use the same Trace ID; instead, each consumer will generate its own trace but will link their spans back to the original producer’s span using span links.</p>
+
+<h4>When to Use Span Links:</h4>
+<ul>
+  <li>Useful in asynchronous systems where operations are not directly related to a single trace but still need to be linked together (e.g., message queues, events, parallel processing).</li>
+  <li>Helps visualize relationships even when they are independent traces.</li>
+</ul>
+
+<h4>Challenges:</h4>
+<ul>
+  <li>Requires explicitly managing span links.</li>
+  <li>Not as straightforward for a simple request flow.</li>
+  <li>For synchronous requests with a clear producer-consumer relationship, trace IDs might be simpler and more effective than span links.</li>
+</ul>
+
+<h2 class="mt-5">When to Use What</h2>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">Trace ID Propagation Scenario</h5>
+    <p class="card-text">A producer sends a request to Consumer 1 and Consumer 2. Both consumers process their parts of the request and generate their spans, but they all share the same Trace ID. This provides a clear view of the request’s path through both consumers.</p>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">Span Links Scenario</h5>
+    <p class="card-text">In a system where the producer sends an event to Consumer 1 and Consumer 2, and each consumer is handling different tasks asynchronously, each consumer generates its own trace. Both will link their spans back to the producer’s span using span links, which allows you to understand how the separate operations are related even though they are independent traces.</p>
+  </div>
+</div>
+
+<h2 class="mt-5">Code Examples</h2>
+
+<h4>Trace Propagation Example</h4>
+<p>Since OpenTelemetry automatically propagates the trace context, in the consumer we can just set span attributes:</p>
+<pre class="bg-dark text-white p-3 rounded"><code>var currentSpan = OpenTelemetry.Trace.Span.Current;
+currentSpan.SetAttribute("consumer", "Consumer 1");</code></pre>
+
+<h4>Span Link Example</h4>
+<p>The producer creates spans for both Consumer 1 and Consumer 2, but links them to the root <code>ProducerSpan</code>:</p>
+<pre class="bg-dark text-white p-3 rounded"><code>var producerSpan = _tracer.StartSpan("ProducerRequest");
+
+// Span links are added using AddLink
+consumer1Span.AddLink(producerSpan);
+consumer2Span.AddLink(producerSpan);</code></pre>
