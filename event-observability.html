@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event driven observability with OpenTelemetry</title>
+</head>
+<body>
+
+  <h1>Event driven observability with OpenTelemetry</h1>
 <p>By the observability standards in distributed systems, you have two options to track requests across services. Here, we will focus on a scenario with one producer that sends messages to multiple consumers.</p>
 
 <h2 class="mt-5">1. Trace ID</h2>
@@ -69,3 +78,6 @@ currentSpan.SetAttribute("consumer", "Consumer 1");</code></pre>
 // Span links are added using AddLink
 consumer1Span.AddLink(producerSpan);
 consumer2Span.AddLink(producerSpan);</code></pre>
+
+</body>
+</html>
