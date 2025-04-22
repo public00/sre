@@ -1,0 +1,142 @@
+<h2 class="mt-4">1. Communication Pattern</h2>
+<ul>
+  <li><strong>One-to-One</strong> – Each client request is handled by exactly one service.</li>
+  <li><strong>One-to-Many</strong> – A single client request is processed by multiple services.</li>
+</ul>
+
+<h2 class="mt-4">2. Communication Mode</h2>
+<ul>
+  <li><strong>Synchronous</strong> – The client expects a timely response from the service.</li>
+  <li><strong>Asynchronous</strong> – The client does not block while waiting for a response; the response may be delivered later.</li>
+</ul>
+
+<hr>
+
+<h2 class="mt-5">One-to-One Patterns</h2>
+<h5 class="mt-3">Request/Response</h5>
+<p>Client sends a request and waits for a response. This leads to tight coupling.</p>
+
+<h5>Asynchronous Request/Response</h5>
+<p>Client sends a request and receives a response asynchronously through a separate mechanism.</p>
+
+<h5>One-Way Notification</h5>
+<p>Client sends a message without expecting a response.</p>
+
+<h2 class="mt-5">One-to-Many Patterns</h2>
+<h5 class="mt-3">Publish/Subscribe</h5>
+<p>Client publishes a message consumed by zero or more services.</p>
+
+<h5>Publish/Asynchronous Response</h5>
+<p>Client publishes a message and waits for responses for a limited time.</p>
+
+<hr>
+
+<h2 class="mt-5">Synchronous Remote Procedure Pattern</h2>
+<p>A client uses a proxy adapter to request a service. The service uses a server adapter to invoke business logic. Common protocols include REST and gRPC.</p>
+
+<h3 class="mt-4">REST API</h3>
+<ul>
+  <li>Uses HTTP verbs and URLs to manipulate resources.</li>
+  <li><strong>POST</strong> creates, <strong>PUT</strong> updates.</li>
+</ul>
+
+<h5>Challenges</h5>
+<ul>
+  <li>Fetching multiple resources in one request.</li>
+  <li>Mapping complex operations to HTTP verbs.</li>
+  <li>Only supports request/response model.</li>
+  <li>Reduces availability due to tight coupling.</li>
+</ul>
+
+<h5>Benefits</h5>
+<ul>
+  <li>Simple and widely adopted.</li>
+  <li>Easy testing with browsers or Postman.</li>
+  <li>No need for message brokers.</li>
+</ul>
+
+<h3 class="mt-4">gRPC</h3>
+<p>Uses binary messaging and runs over HTTP/2, supporting streaming and API-first design.</p>
+
+<h5>Benefits</h5>
+<ul>
+  <li>Rich update operations.</li>
+  <li>Efficient for large messages.</li>
+  <li>Supports bidirectional streaming.</li>
+</ul>
+
+<h5>Drawbacks</h5>
+<ul>
+  <li>Harder for JavaScript clients to consume.</li>
+  <li>Not all firewalls support HTTP/2.</li>
+  <li>Still subject to partial failures.</li>
+</ul>
+
+<hr>
+
+<h2 class="mt-5">Asynchronous Messaging Communication</h2>
+<p>Messages are sent through a broker that routes them between sender and receiver.</p>
+
+<h5>Message Structure</h5>
+<ul>
+  <li><strong>Header</strong>: Metadata (e.g., message ID, return address).</li>
+  <li><strong>Body</strong>: The actual data.</li>
+</ul>
+
+<h3 class="mt-4">Message Types</h3>
+<ul>
+  <li><strong>Document</strong>: Generic message containing data.</li>
+  <li><strong>Command</strong>: Equivalent to an RPC request.</li>
+  <li><strong>Event</strong>: Notification that something happened.</li>
+</ul>
+
+<h3 class="mt-4">Message Channels</h3>
+<ul>
+  <li><strong>Point-to-Point</strong>: One message to one consumer.</li>
+  <li><strong>Publish-Subscribe</strong>: Message delivered to multiple consumers.</li>
+</ul>
+
+<h3 class="mt-4">Implementing Patterns</h3>
+<h5>Request/Response & Async Request/Response</h5>
+<p>Client sends a message with a reply channel and correlation ID. Server responds using that channel.</p>
+
+<h5>One-Way Notification</h5>
+<p>Same as async request/response, but no response is sent.</p>
+
+<h5>Publish/Subscribe</h5>
+<p>Client publishes a message to a topic. Multiple consumers can receive it.</p>
+
+<h5>Publish/Async Response</h5>
+<p>Client includes reply channel in the message. Consumers reply with correlation ID.</p>
+
+<hr>
+
+<h2 class="mt-5">Message Broker</h2>
+<p>The broker routes all messages and decouples senders from receivers.</p>
+
+<h5>Trade-offs</h5>
+<ul>
+  <li>Low-latency brokers may not preserve order or guarantee delivery.</li>
+  <li>Durable brokers use disk storage and introduce higher latency.</li>
+</ul>
+
+<h3 class="mt-4">Challenges</h3>
+
+<h5>1. Preserving Order While Scaling</h5>
+<p>Processing messages concurrently can result in incorrect ordering (e.g., AccountCreated → AccountUpdated → AccountCancelled).</p>
+
+<h6>Solution: Sharded Channels</h6>
+<ul>
+  <li>Use shard keys to assign messages to shards: <code>hash(shard_key) % number_of_shards</code>.</li>
+  <li>Each shard is read by one consumer in a consumer group.</li>
+  <li>Messages for the same key are processed in order.</li>
+</ul>
+
+<h5>2. Handling Duplicate Messages</h5>
+<p>Due to at-least-once delivery, messages may be redelivered if the ack is lost after DB commit.</p>
+
+<h6>Solutions:</h6>
+<ul>
+  <li>Write idempotent message handlers.</li>
+  <li>Track message IDs in a DB and discard duplicates.</li>
+</ul>
