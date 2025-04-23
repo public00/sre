@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distributed transactions SAGA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <div class="container py-5">
+
+        <section class="mb-5">
+            <h2>ACID Transactions</h2>
+            <p>It is used for managing data consistency across decentralized microservices.</p>
+            <p>Transaction management is straightforward in monolith application that accesses a single database. It becomes more complex when monolith app uses multiple databases and message brokers.</p>
+            <p>So microservice based applications must use sagas.</p>
+            <p>Simple application uses ACID transaction pattern, which guarantee reliable processing of database transactions.</p>
+
+            <ul>
+                <li><strong>Atomicity</strong> - all or nothing, if one part fails, transaction is rolled back</li>
+                <li><strong>Consistency</strong> - everything needs to have right state.</li>
+                <li><strong>Isolation</strong> - all transactions are isolated from each other</li>
+                <li><strong>Durability</strong> - when transaction is committed, the changes are permanent</li>
+            </ul>
+
+            <p>In more complex microservices, each service will have its own database, and it can be hard to maintain the state and consistency across all of them.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Troubles with Distributed Transactions</h2>
+            <p>Traditional approach to maintain data consistency across multiple services or message brokers is to use distributed transactions. Distributed Transaction Processing (DTP) model, uses two-phase commit, to ensure all services in transaction either commit or rollback.</p>
+            <p>Problem with this approach is that many databases like MongoDB and Cassandra don’t support them. Same with some of the message brokers like RabbitMQ and Apache Kafka. This means that if you chose to use distributed transactions and two phase commit, you are limited to the technologies that support this kind of transaction.</p>
+            <p>Another problem with distributed transactions is that they are a form of synchronous IPC, which reduces availability. In order for a transaction to commit, all services need to be available.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>SAGA</h2>
+            <p>SAGAs are mechanisms to maintain data consistency in a microservice architecture without having to use distributed transactions. You define SAGA for each system command that needs to update data in multiple services. A SAGA is a sequence of local transactions. Each local transaction updates data within a single service using the familiar ACID transaction framework.</p>
+
+            <p>The SAGAs first local transaction is initiated by the external request to perform some action. The other transactions are each triggered by the completion of the previous one. A service publishes a message when a local transaction is completed. This message then triggers the next step in the SAGA. Not only does using messaging ensure that participants are loosely coupled, it also guarantees that a SAGA completes.</p>
+
+            <p>SAGA uses compensating transactions to roll back changes. A great feature of traditional ACID transactions is that the business logic can easily roll back transaction if it detects a violation of a business rule. That is not possible with SAGA, because each step commits its changes to the local database.</p>
+
+            <p>That is solved by writing compensating transactions. When one step fails, all previous must be rolled back in different transactions. That only applies for write transactions, read-only steps don’t need compensating transactions.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Choreography-based SAGAs</h2>
+            <p>In this pattern, there is no coordinator telling the participants what to do. Instead, they subscribe to each other's event and respond accordingly. All participants of choreography-based SAGAs interact using publish/subscribe pattern.</p>
+
+            <p>There are some issues with this kind of communication:</p>
+            <ul>
+                <li>Make sure that services update their database and publish an event as part of a database transaction. It is important that the database update and the publishing event happen atomically. Otherwise, they need to use transactional messaging.</li>
+                <li>All participants must be able to map each event that it receives to its own data.</li>
+                <li>It is more difficult to understand.</li>
+                <li>When services subscribe to each other's events, it creates cyclic dependencies. It is not a problem, but more like a code smell.</li>
+                <li>Each service needs to subscribe to all events that affect them, which increases the risk of tight coupling.</li>
+            </ul>
+        </section>
+
+        <section class="mb-5">
+            <h2>Orchestration-based SAGAs</h2>
+            <p>Here you define an orchestrator class whose responsibility is to tell services what to do. It uses command/async reply style interaction. It sends a command message, telling services what to perform. When performed, service sends reply message to orchestrator class. Orchestrator determines which step to perform next.</p>
+
+            <ul>
+                <li>This kind of communication doesn’t create cyclic dependencies, as it communicates via orchestration class.</li>
+                <li>Loose coupling - no need to know about where the event came from</li>
+                <li>Coordination logic is localized in the orchestrator, so domain objects are simpler and have no knowledge of the SAGAs they participate in.</li>
+                <li>There is also a big risk of centralizing too much business logic in the orchestrator.</li>
+            </ul>
+
+            <p>The challenge with SAGAs is that they lack the isolation property of ACID transactions. Updates made by each of local transactions between services is immediately visible to others once that transaction commits. Which means that other services can change the data accessed by the SAGA while it is executing, and also read the data before the transaction completed updates. We can solve that if we implement isolation at the application level.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Handling the Lack of Isolation</h2>
+            <ul>
+                <li><strong>Semantic locks</strong> - An application level lock. Adds a lock to row we are creating or updating so it can be locked from other consumers. The flag indicates that record is not committed. Needs decision what to do when it is locked. Should we retry, or block until lock is released.</li>
+                <li><strong>Commutative updates</strong> - updates can be executed in any order</li>
+                <li><strong>Pessimistic view</strong> - reorder the steps of SAGA to minimize business risk</li>
+                <li><strong>Reread value</strong> - prevent dirty writes by rereading data to verify it is not changed.</li>
+                <li><strong>Version file</strong> - record the updates to a record so they can be reordered</li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>
