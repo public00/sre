@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consequences of Missed SLOs & Error Budget Policy</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJv+Yw5B+M8jc2xh7B6+2gAMvO69p5XgxBQ6cql4XcOw8nT3w9JkQK9R9n3Q" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .section-title {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .lead {
+            font-size: 1.1rem;
+        }
+        .content-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .content-section h2 {
+            color: #343a40;
+        }
+        .list-group-item {
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="content-section">
+                <h1 class="text-center mb-4">Consequences of Missed SLOs and Error Budget Policy</h1>
+
+                <p class="lead">In modern software engineering, maintaining high availability, performance, and reliability is a top priority. Service Level Objectives (SLOs) are the key metrics that help organizations measure whether they are meeting their reliability goals. However, when SLOs are consistently missed, the results can be detrimental to both the engineering team and the business as a whole. The Error Budget Policy comes into play as a mechanism to balance reliability with the pace of innovation, guiding engineering teams on when and how to prioritize work to improve the system's reliability.</p>
+
+                <div class="section-title">Consequences of Missed SLOs</div>
+                <p class="lead">When an SLO is missed — whether it's in terms of availability, latency, error rate, or any other key metric — the consequences can be far-reaching:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">User Experience Degradation: Poor SLO performance leads to frustration for users, lost customers, negative reviews, and potentially a decline in revenue.</li>
+                    <li class="list-group-item">Reputational Damage: Consistently missing SLOs can cause damage to a company’s reputation. Trust is hard to rebuild once it’s lost.</li>
+                    <li class="list-group-item">Engineering Burnout: Constant firefighting leads to technical debt and employee burnout, affecting team morale and productivity.</li>
+                    <li class="list-group-item">Increased Operational Costs: Failure to meet SLOs increases operational costs and lowers efficiency, especially when the team is constantly reacting to incidents.</li>
+                    <li class="list-group-item">Slower Innovation: When reliability issues take priority, feature development slows down, leading to missed market opportunities.</li>
+                </ul>
+
+                <div class="section-title mt-4">Error Budget Policy</div>
+                <p class="lead">The Error Budget Policy provides a structured approach to handling situations when SLOs are at risk. This policy helps prioritize engineering efforts to improve system reliability when error budgets are exhausted.</p>
+
+                <h3>When Does the Error Budget Policy Take Effect?</h3>
+                <p>The Error Budget Policy takes effect when an error budget is exhausted or at risk. An error budget is the amount of acceptable failure (e.g., downtime, errors, latency) allowed before the reliability of the system is considered unacceptable.</p>
+                <p>For example, if an SLO for availability is set at 99.9% uptime, the remaining 0.1% downtime represents the error budget. If the error budget is consumed, the team must take action to restore the system to acceptable reliability.</p>
+
+                <h3>How Does the Error Budget Policy Work?</h3>
+                <p>The policy ensures that reliability work is prioritized over feature work when the error budget is at risk. Here's how it typically unfolds:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">Automated Alerts: The system monitors SLOs and triggers alerts when the error budget is at risk, notifying Site Reliability Engineers (SREs) or relevant stakeholders.</li>
+                    <li class="list-group-item">Root Cause Analysis: The team investigates the root cause of the issue to identify how the SLO was missed and how it can be fixed.</li>
+                    <li class="list-group-item">Prioritization of Reliability Work: When the error budget is at risk, feature development is paused, and the team focuses on improving system reliability, such as fixing bugs, optimizing performance, and improving tests.</li>
+                    <li class="list-group-item">Blocking Feature Releases: If the error budget is exhausted, feature releases are blocked until the system is back to normal, ensuring that the team isn't adding more failure points to an already unstable system.</li>
+                </ul>
+
+                <div class="section-title mt-4">Consequences of Not Applying the Error Budget Policy</div>
+                <p>Failing to apply the error budget policy can have significant negative consequences:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">Uncontrolled Downtime and Reliability Issues: Without prioritizing reliability, more frequent failures and downtimes occur, negatively impacting user experience.</li>
+                    <li class="list-group-item">Missed Business Opportunities: Ignoring reliability issues can result in missed opportunities as teams become distracted from key product releases.</li>
+                    <li class="list-group-item">Erosion of Trust: Customers expect consistent service, and failing to meet SLOs can cause lasting damage to trust and long-term relationships.</li>
+                    <li class="list-group-item">Increased Costs: Ignoring reliability can lead to escalating technical debt and higher remediation costs down the line.</li>
+                    <li class="list-group-item">Burnout and Frustration: Engineers may become frustrated by constant firefighting, which can lead to burnout and higher turnover rates.</li>
+                </ul>
+
+                <div class="section-title mt-4">Thresholds and Consequences That Align with Business Priorities</div>
+                <p>To effectively implement an error budget policy, the team should set thresholds and consequences that align with business priorities. For instance, if the team burns through 30 days' worth of error budget, the following actions should be taken:</p>
+                <ul class="list-group">
+                    <li class="list-group-item">Stop Feature Work: All feature releases are paused until the error budget is restored to an acceptable level, ensuring the focus remains on fixing the reliability issues.</li>
+                    <li class="list-group-item">Reallocate Resources: The team may need to temporarily reallocate resources from feature teams to work on reliability improvements.</li>
+                    <li class="list-group-item">Set Clear Timelines: Define how long it will take to resolve the issues and bring the system back to acceptable reliability.</li>
+                    <li class="list-group-item">Escalation Procedures: If the root cause remains unresolved, escalate the issue to higher management or additional expertise to resolve the situation.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (optional for interactivity) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZXEJv+Yw5B+M8jc2xh7B6+2gAMvO69p5XgxBQ6cql4XcOw8nT3w9JkQK9R9n3Q" crossorigin="anonymous"></script>
+</body>
+</html>
