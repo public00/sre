@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> 6 Alerting Strategies Overview</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container my-5">
+  <h1 class="mb-4">6 Alerting Strategies Overview</h1>
+
+  <p>When evaluating an alerting strategy, we need to consider the following attributes:</p>
+  <ul>
+    <li><strong>Precision</strong> – Precision is 100% if every alert corresponds to a real issue (i.e., no false positives).</li>
+    <li><strong>Recall</strong> – Recall is 100% if every significant issue triggers an alert (i.e., no false negatives).</li>
+    <li><strong>Detection Time</strong> – How long it takes to send a notification after a significant issue begins.</li>
+    <li><strong>Reset Time</strong> – How long it takes for the alert to stop firing after the issue is resolved.</li>
+  </ul>
+
+  <h2 class="mt-5">Alert Strategies</h2>
+
+  <div class="accordion" id="alertStrategies">
+    
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Target Error Rate ≥ SLO Threshold
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#alertStrategies">
+        <div class="accordion-body">
+          Fires on any event that threatens the SLO.<br>
+          Example: If the SLO is 99.9% over 30 days, alert if the error rate over the previous 10 minutes is ≥ 0.1%.<br>
+          <strong>Pros:</strong> Fast detection, protects SLOs.<br>
+          <strong>Cons:</strong> Low precision, noisy alerts.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Increased Alert Window
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#alertStrategies">
+        <div class="accordion-body">
+          Increasing the window size means more of the error budget is consumed before the alert fires.<br>
+          Detection time formula: <code>((1 - SLO) / error ratio) * window size</code>.<br>
+          <strong>Pros:</strong> Higher precision, captures sustained issues.<br>
+          <strong>Cons:</strong> Longer detection time, higher computation cost.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Incrementing Alert Duration
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#alertStrategies">
+        <div class="accordion-body">
+          Alerts only if the condition remains above the threshold for some time.<br>
+          If the metric returns to SLO, the timer resets.<br>
+          <strong>Pros:</strong> High precision.<br>
+          <strong>Cons:</strong> Poor recall, slower detection for fast incidents.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Alert on Burn Rate
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#alertStrategies">
+        <div class="accordion-body">
+          Burn rate describes how fast the error budget is consumed relative to the SLO.<br>
+          Detection time formula: <code>((1-SLO) / error ratio) * window size * burn rate</code>.<br>
+          Budget consumed formula: <code>(burn rate * window size) / period</code>.<br>
+          <strong>Pros:</strong> Good precision, fast detection, efficient.<br>
+          <strong>Cons:</strong> Low recall at very high burn rates, long reset times.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingFive">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          Multiple Burn Rate Alerts
+        </button>
+      </h2>
+      <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#alertStrategies">
+        <div class="accordion-body">
+          Set up several burn rate thresholds:<br>
+          Examples: 2% in 1h, 5% in 6h, 10% in 3d.<br>
+          <strong>Pros:</strong> Flexible, good precision and recall.<br>
+          <strong>Cons:</strong> Harder to manage, needs alert suppression.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingSix">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          Multiwindow, Multi-Burn-Rate Alerts
+        </button>
+      </h2>
+      <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#alertStrategies">
+        <div class="accordion-body">
+          Add a shorter confirmation window to ensure the incident persists.<br>
+          Rule: Short window = 1/12 of long window.<br>
+          Example: Page-level alert for >14x burn rate over 1h and 5min.<br>
+          <strong>Pros:</strong> Very high precision and recall.<br>
+          <strong>Cons:</strong> Complex configuration, harder to manage.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="mt-5">Considerations for Service Traffic Levels</h2>
+  <ul>
+    <li><strong>High-traffic services</strong>: Multi-burn-rate strategies work best for balancing fast, accurate alerts.</li>
+    <li><strong>Low-traffic services</strong>:
+      <ul>
+        <li>Generate artificial traffic (synthetic monitoring).</li>
+        <li>Group smaller services together for better alerting.</li>
+      </ul>
+    </li>
+  </ul>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
