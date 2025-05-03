@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Network Architecture Overview</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container my-5">
+    <h1 class="mb-4">Network Architecture</h1>
+
+    <section>
+      <h2>Data Packet Structure</h2>
+      <p>A data packet is the basic unit of communication in a network, similar to a physical letter. It consists of:</p>
+      <ul>
+        <li><strong>Header:</strong> Contains IP address, MAC address, and protocol number</li>
+        <li><strong>Body:</strong> The message being sent</li>
+        <li><strong>Footer:</strong> Signals the end of the packet</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Key Networking Concepts</h2>
+      <ul>
+        <li><strong>Bandwidth:</strong> The amount of data a device receives per second</li>
+        <li><strong>Packet Sniffing:</strong> Capturing and inspecting data packets on a network</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>TCP/IP Model</h2>
+      <p>The TCP/IP model is a standard framework for data transmission. It has four layers:</p>
+      <ul>
+        <li><strong>Network Access Layer:</strong> Handles physical transmission; includes ARP, cables, hubs, etc.</li>
+        <li><strong>Internet Layer:</strong> Connects networks; uses IP for addressing</li>
+        <li><strong>Transport Layer:</strong> Manages data flow with TCP (reliable) and UDP (fast, connectionless)</li>
+        <li><strong>Application Layer:</strong> Interfaces with user applications; uses HTTP, FTP, DNS, etc.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Networking Components</h2>
+      <ul>
+        <li><strong>Port:</strong> Software-based channel for communication (like an apartment number)</li>
+        <li><strong>IP Address:</strong> Unique identifier for a device on the internet</li>
+        <li><strong>MAC Address:</strong> Hardware-specific alphanumeric identifier for network devices</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Communication Protocols</h2>
+      <ul>
+        <li><strong>TCP:</strong> Reliable, connection-based (transport layer)</li>
+        <li><strong>UDP:</strong> Fast, connectionless (transport layer)</li>
+        <li><strong>HTTP:</strong> Web communication, insecure (application layer)</li>
+        <li><strong>DNS:</strong> Resolves domain names to IPs (application layer, UDP 53)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Management Protocols</h2>
+      <ul>
+        <li><strong>SNMP:</strong> Monitors and configures network devices (application layer)</li>
+        <li><strong>ICMP:</strong> Reports errors, used with ping (internet layer)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Security Protocols</h2>
+      <ul>
+        <li><strong>HTTPS:</strong> Secure version of HTTP (port 443, application layer)</li>
+        <li><strong>SFTP:</strong> Secure file transfer over SSH (port 22, application layer)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Security Technologies</h2>
+      <ul>
+        <li><strong>Firewall:</strong> Controls access to/from the network</li>
+        <li><strong>VPN:</strong> Hides IP and encrypts traffic for privacy</li>
+        <li><strong>Proxy Server:</strong> Acts as a middleman to protect internal services</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Subnetting & CIDR</h2>
+      <p><strong>Subnetting</strong> divides a network into smaller segments to improve performance and security.</p>
+      <p><strong>CIDR</strong> (Classless Inter-Domain Routing) uses notation like <code>/24</code> to define network sizes and improve routing efficiency.</p>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
