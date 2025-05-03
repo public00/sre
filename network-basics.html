@@ -1,93 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Network Architecture Overview</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
   <div class="container my-5">
-    <h1 class="mb-4">Network Architecture</h1>
+    <h1 class="mb-4">Network architecture</h1>
 
-    <section>
-      <h2>Data Packet Structure</h2>
-      <p>A data packet is the basic unit of communication in a network, similar to a physical letter. It consists of:</p>
-      <ul>
-        <li><strong>Header:</strong> Contains IP address, MAC address, and protocol number</li>
-        <li><strong>Body:</strong> The message being sent</li>
-        <li><strong>Footer:</strong> Signals the end of the packet</li>
-      </ul>
-    </section>
+    <p>Data packet is a basic unit of communication that travels over from one device to another within the network.</p>
 
-    <section>
-      <h2>Key Networking Concepts</h2>
-      <ul>
-        <li><strong>Bandwidth:</strong> The amount of data a device receives per second</li>
-        <li><strong>Packet Sniffing:</strong> Capturing and inspecting data packets on a network</li>
-      </ul>
-    </section>
+    <p>Data package is very similar to physical letter. It contains</p>
+    <ul>
+      <li>Header - IP address / MAC address / Protocol Number</li>
+      <li>Body - Message that is being sent</li>
+      <li>Footer - Signal the receiving device that packet is finished.</li>
+    </ul>
 
-    <section>
-      <h2>TCP/IP Model</h2>
-      <p>The TCP/IP model is a standard framework for data transmission. It has four layers:</p>
-      <ul>
-        <li><strong>Network Access Layer:</strong> Handles physical transmission; includes ARP, cables, hubs, etc.</li>
-        <li><strong>Internet Layer:</strong> Connects networks; uses IP for addressing</li>
-        <li><strong>Transport Layer:</strong> Manages data flow with TCP (reliable) and UDP (fast, connectionless)</li>
-        <li><strong>Application Layer:</strong> Interfaces with user applications; uses HTTP, FTP, DNS, etc.</li>
-      </ul>
-    </section>
+    <p>Bandwidth refers to amount of data a device receives every second.</p>
 
-    <section>
-      <h2>Networking Components</h2>
-      <ul>
-        <li><strong>Port:</strong> Software-based channel for communication (like an apartment number)</li>
-        <li><strong>IP Address:</strong> Unique identifier for a device on the internet</li>
-        <li><strong>MAC Address:</strong> Hardware-specific alphanumeric identifier for network devices</li>
-      </ul>
-    </section>
+    <p>Packet sniffing is a practice of capturing and inspecting data packets across a network.</p>
 
-    <section>
-      <h2>Communication Protocols</h2>
-      <ul>
-        <li><strong>TCP:</strong> Reliable, connection-based (transport layer)</li>
-        <li><strong>UDP:</strong> Fast, connectionless (transport layer)</li>
-        <li><strong>HTTP:</strong> Web communication, insecure (application layer)</li>
-        <li><strong>DNS:</strong> Resolves domain names to IPs (application layer, UDP 53)</li>
-      </ul>
-    </section>
+    <h2 class="mt-5">TCP/IP model</h2>
+    <p>Transmission control protocol / Internet protocol is a standard communication protocol. It establish connection between devices and allows devices to stream the data. TCP/IP model is a framework used to visualise how data is organised and transmitted across the network.</p>
 
-    <section>
-      <h2>Management Protocols</h2>
-      <ul>
-        <li><strong>SNMP:</strong> Monitors and configures network devices (application layer)</li>
-        <li><strong>ICMP:</strong> Reports errors, used with ping (internet layer)</li>
-      </ul>
-    </section>
+    <p>It has 4 Layers:</p>
+    <ul>
+      <li><strong>Network Access Layer</strong> - deals with creation of network packets and their transmission over the network. This corresponds to the physical hardware involved in network communication. Hubs, modems, cables are all considered part of this layer. The address resolution protocol ARP is part of the network access layer, where it needs to map IP address to MAC address for local communication.</li>
+      <li><strong>Internet Layer</strong> - Focuses how networks connect to each other. Internet addresses are attached to data packets to indicate location of sender and receiver. It uses Internet Protocol to send data to correct destination.</li>
+      <li><strong>Transport Layer</strong> - Includes protocols to control the flow of traffic across the network. It uses Transmission Control Protocol (TCP) helps with that, and it contains the port number of intended destination service, which resides in the TCP header. User Datagram Protocol (UDP) doesn’t establish connection, and is used for apps that are not concerned with the reliability of the transmission. It is used mostly for Data streaming, like video or sound.</li>
+      <li><strong>Application Layer</strong> - how data packets interact with sending and receiving devices. It uses HTTP, SMTP, SSH, FTP, DNS protocol.</li>
+    </ul>
 
-    <section>
-      <h2>Security Protocols</h2>
-      <ul>
-        <li><strong>HTTPS:</strong> Secure version of HTTP (port 443, application layer)</li>
-        <li><strong>SFTP:</strong> Secure file transfer over SSH (port 22, application layer)</li>
-      </ul>
-    </section>
+    <p>Inspecting and troubleshooting issues on the network security professionals can analyse which layers were impacted by an attack based on what processes were involved in an incident.</p>
 
-    <section>
-      <h2>Security Technologies</h2>
-      <ul>
-        <li><strong>Firewall:</strong> Controls access to/from the network</li>
-        <li><strong>VPN:</strong> Hides IP and encrypts traffic for privacy</li>
-        <li><strong>Proxy Server:</strong> Acts as a middleman to protect internal services</li>
-      </ul>
-    </section>
+    <p>Port is a software based location that organises the sending and receiving of data between devices on a network. Imagine it as a apartment number in the building, a mailman knows by that number where to deliver the message.</p>
 
-    <section>
-      <h2>Subnetting & CIDR</h2>
-      <p><strong>Subnetting</strong> divides a network into smaller segments to improve performance and security.</p>
-      <p><strong>CIDR</strong> (Classless Inter-Domain Routing) uses notation like <code>/24</code> to define network sizes and improve routing efficiency.</p>
-    </section>
+    <p>IP address is a unique string of characters that identifies the location of a device on the internet. Internet service provider assign public IP address to our router. Even if there are multiple devices in one network, they are accessing outside network with one public address.</p>
+
+    <p>MAC address is a unique alphanumeric identifier that is assigned to each physical device on a network.</p>
+
+    <h2 class="mt-5">Communication protocols</h2>
+    <p>Communication protocols manage how data is transmitted between devices in a network, including timing and data recovery.</p>
+    <ul>
+      <li><strong>TCP (Transmission Control Protocol):</strong> A reliable, connection-oriented protocol that establishes a connection via a three-way handshake (SYN, SYN/ACK, ACK). Operates at the transport layer.</li>
+      <li><strong>UDP (User Datagram Protocol):</strong> A faster, connectionless protocol that does not guarantee delivery, suitable for time-sensitive transmissions like DNS queries. Also at the transport layer.</li>
+      <li><strong>HTTP (Hypertext Transfer Protocol):</strong> An application layer protocol used for communication between web clients and servers. Uses port 80 and is being replaced by the more secure HTTPS (which uses SSL/TLS encryption).</li>
+      <li><strong>DNS (Domain Name System):</strong> Translates domain names into IP addresses. Uses UDP on port 53, but can switch to TCP for larger replies. Operates at the application layer.</li>
+    </ul>
+
+    <h2 class="mt-5">Management protocols</h2>
+    <p>Management protocols are used to monitor, manage, and optimize network performance, as well as report errors.</p>
+    <ul>
+      <li><strong>SNMP (Simple Network Management Protocol):</strong> Used for monitoring and managing network devices. It can reset passwords, change configurations, and gather bandwidth usage data. Operates at the application layer.</li>
+      <li><strong>ICMP (Internet Control Message Protocol):</strong> Used to report errors and diagnose network issues (e.g., with the "ping" command). It sends messages about transmission problems between devices. Operates at the internet layer.</li>
+    </ul>
+
+    <h2 class="mt-5">Security protocols</h2>
+    <p>Security protocols ensure that data is securely transmitted over a network using encryption methods to protect against interception.</p>
+    <ul>
+      <li><strong>HTTPS (Hypertext Transfer Protocol Secure):</strong> A secure version of HTTP that uses SSL/TLS encryption to protect data between clients and servers. Uses port 443 and operates at the application layer.</li>
+      <li><strong>SFTP (Secure File Transfer Protocol):</strong> A secure file transfer protocol that operates over SSH (using TCP port 22), providing encrypted file uploads and downloads—commonly used in cloud storage. Also operates at the application layer.</li>
+    </ul>
+
+    <p><strong>Firewall</strong> is network security device that allows or blocks access.</p>
+
+    <p><strong>VPNs</strong> - is a network security service that changes your public IP address and hides your virtual location so that you can keep your data private.</p>
+
+    <h2 class="mt-5">Subnetting and CIDR Summary</h2>
+    <p>Subnetting is the division of a network into smaller, logical sub-networks (subnets). It enhances efficiency, security, and performance by isolating traffic within segments.</p>
+
+    <p>Subnets help enforce security zones (e.g., controlled, restricted, and DMZ zones) by keeping sensitive data separate from public traffic.</p>
+
+    <p>When devices within a subnet communicate, switches keep the data within that subnet, reducing network congestion and improving speed.</p>
+
+    <h3 class="mt-4">CIDR (Classless Inter-Domain Routing)</h3>
+    <ul>
+      <li>CIDR replaced the older classful addressing system to expand IPv4 address availability.</li>
+      <li>CIDR uses a slash notation (e.g., 198.51.100.0/24), where the /24 indicates the network prefix length (i.e., how many bits are used for the network portion).</li>
+      <li>CIDR improves routing efficiency and supports more flexible subnetting.</li>
+      <li>Tools like IPAddressGuide can help convert between CIDR and standard IPv4 formats for better understanding.</li>
+    </ul>
+
+    <p><strong>Proxy Servers</strong> - Can help us secure internal services. It sits between network and our services. It uses different public address than our services.</p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
