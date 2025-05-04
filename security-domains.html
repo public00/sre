@@ -7,129 +7,75 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <div class="container py-5">
+    <h1 class="mb-4">Security Domains</h1>
 
-<div class="container py-5">
-  <h1 class="mb-4">Security Domains</h1>
+    <p><strong>Security and Risk Management</strong> - Focused on defining security goals and objectives, risk mitigation, compliance, and business continuity. Risk mitigation is the process of having the right procedures and rules in place to quickly reduce the impact of risks.</p>
 
-  <div class="mb-4">
-    <h4>1. Security and Risk Management</h4>
-    <p>Focuses on defining security goals, risk mitigation, compliance, and business continuity. Risk mitigation means having rules and procedures to quickly reduce risk impact.</p>
-  </div>
+    <p><strong>Asset Security</strong> - Focused on securing digital and physical assets. Assets should be secured no matter where they are, digital or physical.</p>
 
-  <div class="mb-4">
-    <h4>2. Asset Security</h4>
-    <p>Secures digital and physical assets at all times and locations.</p>
-  </div>
+    <p><strong>Security Architecture and Engineering</strong> - Optimizing data security.</p>
 
-  <div class="mb-4">
-    <h4>3. Security Architecture and Engineering</h4>
-    <p>Ensures data security is part of system and network design.</p>
-  </div>
+    <p><strong>Communication and Network Security</strong> - Focused on managing and securing physical networks and wireless networks.</p>
 
-  <div class="mb-4">
-    <h4>4. Communication and Network Security</h4>
-    <p>Manages and secures physical and wireless networks.</p>
-  </div>
+    <p><strong>Identity and Access Management</strong> - Making sure users follow established policies to control and manage assets with the right authorization. IAM has 4 components: Identification, Authentication, Authorization, Accountability.</p>
 
-  <div class="mb-4">
-    <h4>5. Identity and Access Management (IAM)</h4>
-    <p>Ensures proper user access using:</p>
+    <p><strong>Security Assessment and Testing</strong></p>
+
+    <p><strong>Security Operations</strong> - Conducting investigation and implementing preventive measures.</p>
+
+    <p><strong>Software Development Security</strong> - Using secure coding practices.</p>
+
+    <hr>
+
+    <h2>Security Frameworks, Controls, and Principles</h2>
+    <p>Security frameworks are used to create plans to address security risks, threats, and vulnerabilities.</p>
+    <p>Controls are used to reduce specific risks.</p>
+
+    <p>There are three common types of controls:</p>
     <ul>
-      <li>Identification</li>
+      <li>Encryption</li>
       <li>Authentication</li>
       <li>Authorization</li>
-      <li>Accountability</li>
     </ul>
-  </div>
 
-  <div class="mb-4">
-    <h4>6. Security Assessment and Testing</h4>
-    <p>Tests systems for vulnerabilities using scanning and pen testing.</p>
-  </div>
+    <p>The CIA triad is a model that helps inform how organizations consider risk when setting up systems and security policies. The three letters in the CIA triad stand for Confidentiality, Integrity, and Availability.</p>
 
-  <div class="mb-4">
-    <h4>7. Security Operations</h4>
-    <p>Investigates incidents and applies preventive measures.</p>
-  </div>
+    <p><strong>NIST CSF Framework</strong> focuses on five core functions: Identify, Protect, Detect, Respond, and Recover.</p>
 
-  <div class="mb-4">
-    <h4>8. Software Development Security</h4>
-    <p>Uses secure coding practices in the software development lifecycle.</p>
-  </div>
-
-  <hr class="my-5">
-
-  <h2>Security Frameworks and Controls</h2>
-  <p>Frameworks help plan for risks. Controls reduce specific risks:</p>
-  <ul>
-    <li><strong>Encryption</strong></li>
-    <li><strong>Authentication</strong></li>
-    <li><strong>Authorization</strong></li>
-  </ul>
-
-  <div class="mt-4">
-    <h4>CIA Triad</h4>
-    <p>Core model for security:</p>
+    <h5>OWASP Security Principles:</h5>
     <ul>
-      <li>Confidentiality</li>
-      <li>Integrity</li>
-      <li>Availability</li>
+      <li>Minimize attack surface area: Attack surface refers to all the potential vulnerabilities a threat actor could exploit.</li>
+      <li>Principle of least privilege: Users have the least amount of access required to perform their everyday tasks.</li>
+      <li>Defense in depth: Organizations should have varying security controls that mitigate risks and threats.</li>
+      <li>Separation of duties: Critical actions should rely on multiple people, each of whom follow the principle of least privilege.</li>
+      <li>Keep security simple: Avoid unnecessarily complicated solutions. Complexity makes security difficult.</li>
+      <li>Fix security issues correctly: When security incidents occur, identify the root cause, contain the impact, identify vulnerabilities, and conduct tests to ensure that remediation is successful.</li>
     </ul>
-  </div>
 
-  <div class="mt-4">
-    <h4>NIST CSF Framework</h4>
+    <hr>
+
+    <h2>How Frameworks, Controls, Principles, and Compliance Regulations Work Together</h2>
+    <p>By conducting security audits. A security audit is a review of an organization's security controls, policies, and procedures against a set of expectations. Internal security audits are used to help improve an organization's security posture and help organizations avoid fines from governing agencies due to a lack of compliance.</p>
+
+    <hr>
+
+    <h2>Tools</h2>
+    <p>Sometimes we need to read or parse the logs to analyze or mitigate threats, risks, and vulnerabilities. Three common log sources are:</p>
     <ul>
-      <li>Identify</li>
-      <li>Protect</li>
-      <li>Detect</li>
-      <li>Respond</li>
-      <li>Recover</li>
+      <li><strong>Firewall logs</strong> - Record of attempted or established connections or outbound requests.</li>
+      <li><strong>Network logs</strong> - Record of computers and devices that leave the network.</li>
+      <li><strong>Server logs</strong> - Records related to services.</li>
     </ul>
+
+    <p><strong>SIEM tool</strong> is an application that analyzes log data to check for vulnerabilities. It stores all log data in a central location. It can also be used to create dashboards to help recognize threats quickly.</p>
+
+    <p>The most famous tool is <strong>Splunk</strong>. This helps security professionals manage an organization's internal infrastructure by collecting, searching, monitoring, and analyzing log data from multiple sources to obtain full visibility into an organization’s everyday operations.</p>
+
+    <hr>
+
+    <h2>Playbooks to Respond to Incidents</h2>
+    <p>A playbook is a manual that provides details about any operational action. It has a consistent list of actions in a prescribed way. Playbooks can be very detailed and may include flow charts and tables to clarify what actions to take and in which order. Playbooks are also used for recovery procedures in the event of a ransomware attack.</p>
   </div>
-
-  <div class="mt-4">
-    <h4>OWASP Security Principles</h4>
-    <ul>
-      <li>Minimize Attack Surface Area</li>
-      <li>Principle of Least Privilege</li>
-      <li>Defense in Depth</li>
-      <li>Separation of Duties</li>
-      <li>Keep Security Simple</li>
-      <li>Fix Security Issues Correctly</li>
-    </ul>
-  </div>
-
-  <hr class="my-5">
-
-  <h2>Audits and Compliance</h2>
-  <p>Security audits review controls and procedures. They help improve security posture and ensure legal compliance.</p>
-
-  <hr class="my-5">
-
-  <h2>Security Tools and Log Analysis</h2>
-  <p>We use logs to detect and mitigate threats. Common logs include:</p>
-  <ul>
-    <li>Firewall Logs – connection attempts</li>
-    <li>Network Logs – device and computer activity</li>
-    <li>Server Logs – service and system events</li>
-  </ul>
-
-  <p><strong>SIEM tools</strong> analyze logs in one place and help with dashboards, alerts, and visibility. Example: <strong>Splunk</strong>.</p>
-
-  <hr class="my-5">
-
-  <h2>Playbooks for Incident Response</h2>
-  <p>A playbook provides step-by-step guidance during security incidents. It may include:</p>
-  <ul>
-    <li>Action steps</li>
-    <li>Flowcharts or tables</li>
-    <li>Roles and responsibilities</li>
-    <li>Recovery procedures</li>
-  </ul>
-  <p>Used for consistency, speed, and clarity under pressure.</p>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
