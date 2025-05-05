@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Linux Signals</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Linux Signals</h1>
+    <p>A signal is a notification to a process that an event has occurred. Signals are sometimes described as software interrupts. One process can send a signal to another process.</p>
+
+    <p>Usually kernel is the one that sends signals:</p>
+    <ul>
+      <li>Hardware exception occurred</li>
+      <li>User typed one of the terminal special characters that generate signals. Interrup character usually Control-C and suspend character, usually Control-Z.</li>
+      <li>Software event occurred. A process time limit was exceeded, child process terminated…</li>
+    </ul>
+
+    <p>Signals fall into two broad categories:</p>
+    <ul>
+      <li>Traditional - standard signals, used by kernel to notify processes or events</li>
+      <li>Realtime signals</li>
+    </ul>
+
+    <p>When a signal is delivered, a process can:</p>
+    <ul>
+      <li>Ignore the signal</li>
+      <li>The process is terminated (killed)</li>
+      <li>Core dump file is generated, which contains image of the virtual memory of the process, that can be debugged.</li>
+      <li>Execution is stopped</li>
+      <li>Execution is resumed</li>
+    </ul>
+
+    <p>Engineers can write a signal handler function, that does some action when signal is delivered.</p>
+
+    <h4 class="mt-4">Important signal types</h4>
+    <ul>
+      <li><strong>SIGINT (Interrupt)</strong> – Sent when you press Ctrl+C in the terminal. Example: ping google.com → press Ctrl+C to stop it.</li>
+      <li><strong>SIGHUP (Hangup)</strong> – Sent when a terminal disconnects or to reload daemon configs. Example: sudo kill -HUP $(pidof nginx)</li>
+      <li><strong>SIGTERM (Terminate)</strong> – Politely asks a process to terminate. Example: kill -TERM &lt;pid&gt;</li>
+      <li><strong>SIGKILL (Force Kill)</strong> – Forcefully stops a process immediately. Example: kill -9 &lt;pid&gt;</li>
+      <li><strong>SIGSTOP and SIGCONT (Stop and Continue)</strong> – Suspend and resume a process. Example: kill -STOP &lt;pid&gt; to pause, kill -CONT &lt;pid&gt; to resume</li>
+      <li><strong>SIGSEGV (Segmentation Fault)</strong> – Happens when accessing invalid memory. Example: int *p = NULL; *p = 10; (in C)</li>
+      <li><strong>SIGCHLD (Child Status Changed)</strong> – Sent to parent when a child process exits. Example: handled in code with signal(SIGCHLD, handler);</li>
+      <li><strong>SIGALRM (Timer Alarm)</strong> – Sent when an alarm set by alarm() expires. Example: alarm(5) in C sets an alarm after 5 seconds</li>
+      <li><strong>SIGUSR1 / SIGUSR2 (User-defined Signals)</strong> – Custom use defined by developer. Example: kill -USR1 &lt;pid&gt; or handled in code with signal(SIGUSR1, handler);</li>
+    </ul>
+
+    <p>Signal Handler is a function that is called when a special signal is delivered to process.</p>
+
+    <p>Sending signal - one process can send a signal to another process using the kill() system call. int kill(pid_t pid, int sig)</p>
+
+    <p>For each process the kernel maintains a signal mask, a set of signals whose delivery to the process is currently blocked.</p>
+
+    <p>If a process receives a signal that it is currently blocking, that signal is added to the process’s set of pending signals.</p>
+
+    <p>Most traditional signals (like SIGINT, SIGTERM, SIGHUP, etc.) are not queued.</p>
+
+    <p>If the same signal is sent multiple times before it’s delivered, only one instance is delivered. Example: If a process gets 5 SIGTERMs before handling one, it will only receive it once.</p>
+
+    <p>Calling pause() suspends execution of the process until the call is interrupted by a signal handler (or until an unhandled signal terminates the process).</p>
+
+    <p>A signal is a notification that some kind of event has occurred, and may be sent to a process by the kernel, by another process, or by itself. There is a range of standard signal types, each of which has a unique number and purpose.</p>
+
+    <p>Signal delivery is typically asynchronous, meaning that the point at which the signal interrupts execution of the process is unpredictable. In some cases (e.g., hardware-generated signals), signals are delivered synchronously, meaning that delivery occurs predictably and reproducibly at a certain point in the execution of a program. By default, a signal either is ignored, terminates a process (with or without a core dump), stops a running process, or restarts a stopped process. The particular default action depends on the signal type.</p>
+
+    <p>Alternatively, a program can use signal() or sigaction() to explicitly ignore a signal or to establish a programmer-defined signal handler function that is invoked when the signal is delivered. For portability reasons, establishing a signal handler is best performed using sigaction().</p>
+  </div>
+</body>
+</html>
